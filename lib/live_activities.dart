@@ -171,6 +171,11 @@ class LiveActivities {
     return LiveActivitiesPlatform.instance.allowsPushStart();
   }
 
+  /// Open the system settings screen where the user can manage Live Activities.
+  Future<bool> openLiveActivitySettings() {
+    return LiveActivitiesPlatform.instance.openLiveActivitySettings();
+  }
+
   /// Get a stream of url scheme data.
   /// Don't forget to add **CFBundleURLSchemes** to your Info.plist file.
   /// Return a Future of [scheme] [url] [host] [path] and [queryParameters].

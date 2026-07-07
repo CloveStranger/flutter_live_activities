@@ -99,6 +99,12 @@ abstract class LiveActivitiesPlatform extends PlatformInterface {
     );
   }
 
+  Future<bool> openLiveActivitySettings() {
+    throw UnimplementedError(
+      'openLiveActivitySettings() has not been implemented.',
+    );
+  }
+
   Stream<UrlSchemeData> urlSchemeStream() {
     throw UnimplementedError('urlSchemeStream() has not been implemented.');
   }

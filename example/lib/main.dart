@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
 
     if (Platform.isIOS) {
       _liveActivitiesPlugin.activityUpdateStream.listen((event) {
-        print('Activity update: $event');
+        debugPrint('Activity update: $event');
       });
 
       urlSchemeSubscription =
@@ -193,7 +193,7 @@ class _HomeState extends State<Home> {
                       DateTime.now().millisecondsSinceEpoch.toString(),
                       _footballGameLiveActivityModel!.toMap(),
                     );
-                    print("ActivityID: $activityId");
+                    debugPrint('ActivityID: $activityId');
                     setState(() => _latestActivityId = activityId);
                   },
                   child: const Column(

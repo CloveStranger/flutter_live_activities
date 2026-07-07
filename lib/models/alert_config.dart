@@ -8,6 +8,6 @@ class AlertConfig {
   Map<String, String> toMap() => {
     'title': title,
     'body': body,
-    if (sound != null) 'sound': sound!,
+    'sound': ?sound,
   };
 }

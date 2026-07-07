@@ -121,6 +121,11 @@ class MockLiveActivitiesPlatform
   }
 
   @override
+  Future<bool> openLiveActivitySettings() {
+    return Future.value(true);
+  }
+
+  @override
   Stream<String> get pushToStartTokenUpdateStream {
     return Stream.value('PUSH_TO_START_TOKEN');
   }
@@ -221,6 +226,10 @@ void main() {
 
   test('allowsPushStart', () async {
     expect(await liveActivitiesPlugin.allowsPushStart(), true);
+  });
+
+  test('openLiveActivitySettings', () async {
+    expect(await liveActivitiesPlugin.openLiveActivitySettings(), true);
   });
 
   test('pushToStartTokenUpdateStream', () async {

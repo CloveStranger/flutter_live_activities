@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:live_activities/live_activities_method_channel.dart';
@@ -17,6 +18,8 @@ void main() {
           return ['ACTIVITY_ID'];
         case 'getActivityState':
           return 'dismissed';
+        case 'openLiveActivitySettings':
+          return true;
         default:
       }
       return null;
@@ -29,6 +32,7 @@ void main() {
   });
 
   tearDown(() {
+    debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
   });
@@ -70,5 +74,17 @@ void main() {
 
   test('getActivityState', () async {
     expect(await platform.getActivityState('ACTIVITY_ID'), null);
+  });
+
+  test('openLiveActivitySettings returns false outside iOS', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+
+    expect(await platform.openLiveActivitySettings(), isFalse);
+  });
+
+  test('openLiveActivitySettings invokes method channel on iOS', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
+    expect(await platform.openLiveActivitySettings(), isTrue);
   });
 }

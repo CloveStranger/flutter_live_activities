@@ -157,6 +157,18 @@ class MethodChannelLiveActivities extends LiveActivitiesPlatform {
   }
 
   @override
+  Future<bool> openLiveActivitySettings() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      return false;
+    }
+
+    final result = await methodChannel.invokeMethod<bool>(
+      'openLiveActivitySettings',
+    );
+    return result ?? false;
+  }
+
+  @override
   Stream<UrlSchemeData> urlSchemeStream() {
     if (defaultTargetPlatform != TargetPlatform.iOS) {
       return Stream.empty();
